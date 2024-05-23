@@ -1,0 +1,26 @@
+import time
+import tkinter as tk
+
+class DigitalClock:
+    def __init__(self):
+        self.root = tk.Tk()
+        self.root.title("Digital Clock")
+
+        self.label = tk.Label(self.root, font=("Arial", 40))
+        self.label.pack()
+
+        self.update_time()
+
+    def update_time(self):
+        now = time.localtime()
+        time_string = f"{now.tm_hour:02d}:{now.tm_min:02d}:{now.tm_sec:02d}"
+        self.label.config(text=time_string)
+
+        self.root.after(1000, self.update_time)
+
+    def start(self):
+        self.root.mainloop()
+
+if __name__ == "__main__":
+    clock = DigitalClock()
+    clock.start()
